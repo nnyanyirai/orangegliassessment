@@ -49,7 +49,8 @@ public class PaymentProcessor {
         providerCharges.putIfAbsent(
             paymentProvider.getName(), paymentProvider.calculateTransactionFee(transaction));
       } catch (UnsupportedTransactionException e) {
-        logger.info("Transaction not supported for {} ", paymentProvider.getName());
+        new TransactionResult(
+            null, TransactionStatus.Failed, 0, "Card not supported.", transaction, 0.0, 0.0, 0.0);
       }
     }
 

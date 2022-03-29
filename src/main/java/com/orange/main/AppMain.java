@@ -25,13 +25,6 @@ public class AppMain {
         transactionResults.stream()
             .collect(Collectors.groupingBy(TransactionResult::getProviderName));
 
-    Map<String, Double> providerTotals =
-        transactionResults.stream()
-            .collect(
-                Collectors.groupingBy(
-                    TransactionResult::getProviderName,
-                    Collectors.summingDouble(TransactionResult::getForwardToProvider)));
-
     Map<String, Double> providerTotalCharges =
         transactionResults.stream()
             .collect(
