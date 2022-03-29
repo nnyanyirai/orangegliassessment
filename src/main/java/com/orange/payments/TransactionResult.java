@@ -65,7 +65,7 @@ public class TransactionResult {
 
   public double getProviderCharge() {
 
-    return -(forwardToProvider - receiverWillGet);
+    return (forwardToProvider);
   }
 
   public double getRevenue() {

@@ -42,6 +42,7 @@ public class PaymentProcessor {
         providers.stream()
             .collect(
                 Collectors.toMap(PaymentProvider::getName, Function.identity(), (k1, k2) -> k1));
+
     Map<String, Double> providerCharges = new HashMap<>();
     for (PaymentProvider paymentProvider : providers) {
       try {
