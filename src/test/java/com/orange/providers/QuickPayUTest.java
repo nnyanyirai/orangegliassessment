@@ -8,7 +8,6 @@ import com.orange.Country;
 import com.orange.exceptions.UnsupportedTransactionException;
 import com.orange.payments.TransactionResult;
 import com.orange.payments.TransactionStatus;
-import com.orange.payments.providers.HoutPay;
 import com.orange.transactions.CardType;
 import com.orange.transactions.Transaction;
 import org.junit.Test;
