@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 
 public class AppMain {
   public static void main(String[] args) {
+    double transactionTotals = 0;
     Transactions transactions = new Transactions();
     PaymentProcessor processor = new PaymentProcessor();
     List<TransactionResult> transactionResults = new ArrayList<>();
     for (Transaction transaction : transactions.getTransactions()) {
       TransactionResult transactionResult = processor.processPayment(transaction);
       transactionResults.add(transactionResult);
+      transactionTotals = transactionTotals + transaction.getTransactionAmount();
     }
 
     Map<String, List<TransactionResult>> transactionResultsByProvider =
@@ -36,9 +38,19 @@ public class AppMain {
                 Collectors.groupingBy(
                     TransactionResult::getProviderName,
                     Collectors.summingDouble(TransactionResult::getProviderCharge)));
+
+    Map<String, Long> transCountPerProvider =
+        transactionResults.stream()
+            .collect(
+                Collectors.groupingBy(TransactionResult::getProviderName, Collectors.counting()));
+
     Double orangeRevenue =
         transactionResults.stream()
             .collect(Collectors.summingDouble(TransactionResult::getRevenue));
+
+    Double totalPaidToProviders =
+        transactionResults.stream()
+            .collect(Collectors.summingDouble(TransactionResult::getProviderCharge));
 
     System.out.println(
         "******************** Printing Providers that process with least charge *****************************");
@@ -50,23 +62,31 @@ public class AppMain {
                 + " -- provider charge is  =  "
                 + e1.getProviderCharge());
     }
+    System.out.println(
+        "******************** Printing Total Paid to Providers *****************************");
+    System.out.println("Total Paid to Providers is = " + totalPaidToProviders);
 
     System.out.println(
-        "******************** Printing Providers Total Charges *****************************");
+        "******************** Printing Total Charges per provider *****************************");
     for (Map.Entry<String, Double> e : providerTotalCharges.entrySet()) {
       System.out.println(
-          "Provider is " + e.getKey() + " -- Total Charges for Provider  =  " + e.getValue());
+          "Provider is " + e.getKey() + " -- Total Charges =  " + e.getValue());
     }
 
     System.out.println(
-        "******************** Printing Providers Totals *****************************");
-    for (Map.Entry<String, Double> e : providerTotals.entrySet()) {
+        "******************** Printing number of Transactions per Provider *****************************");
+    for (Map.Entry<String, Long> e : transCountPerProvider.entrySet()) {
       System.out.println(
-          "Provider is " + e.getKey() + " -- Total charge for Provider  =  " + e.getValue());
+          "Provider is " + e.getKey() + " -- considered for  =  " + e.getValue() + " times.");
     }
 
     System.out.println(
         "******************** Printing Orange Revenue *****************************");
     System.out.println("Orange Revenue is " + orangeRevenue);
+
+    System.out.println(
+        "******************** Printing Total value of all transactions processed by Orange ***********************");
+    System.out.println("Total transactions value is " + transactionTotals);
+
   }
 }
