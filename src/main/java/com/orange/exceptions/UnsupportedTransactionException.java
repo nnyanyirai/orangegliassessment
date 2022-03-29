@@ -1,8 +1,8 @@
 package com.orange.exceptions;
 
-public class UnsupportedTransactionException extends Exception{
+public class UnsupportedTransactionException extends Exception {
 
-  public UnsupportedTransactionException(String message){
+  public UnsupportedTransactionException(String message) {
     super(message);
   }
 }

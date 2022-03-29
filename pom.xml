@@ -7,11 +7,11 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.0.2.RELEASE</version>
 	</parent>
-	<artifactId>orders</artifactId>
+	<artifactId>orange-payment-processor</artifactId>
 	<groupId>com.orange</groupId>
-	<name>Spring Boot Jetty Sample</name>
-	<description>Spring Boot Jetty Sample</description>
-	<version>1.0-SNAPSHOT</version>
+	<name>Orange Payment Processor</name>
+	<description>Payment processor for different providers</description>
+	<version>1.0</version>
 	<url>http://projects.spring.io/spring-boot/</url>
 	<organization>
 		<name>Pivotal Software, Inc.</name>
