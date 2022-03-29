@@ -49,7 +49,7 @@ public class PaymentProcessor {
         providerCharges.putIfAbsent(
             paymentProvider.getName(), paymentProvider.calculateTransactionFee(transaction));
       } catch (UnsupportedTransactionException e) {
-        logger.info("Transaction not supported for this {} ", paymentProvider.getName());
+        logger.info("Transaction not supported for {} ", paymentProvider.getName());
       }
     }
 
