@@ -8,6 +8,7 @@ import com.orange.Country;
 import com.orange.exceptions.UnsupportedTransactionException;
 import com.orange.payments.TransactionResult;
 import com.orange.payments.TransactionStatus;
+import com.orange.payments.providers.QuickPay;
 import com.orange.transactions.CardType;
 import com.orange.transactions.Transaction;
 import org.junit.Test;
@@ -42,7 +43,6 @@ public class QuickPayUTest {
     when(transaction.getCountry()).thenReturn(Country.southAfrica());
     quickPay.calculateTransactionFee(transaction);
   }
-
 
   @Test
   public void givenCountryIsNotIndia_andCardTypeIsDinners_calculateTransactionFee_thenReturnTwentyFive()
@@ -83,8 +83,6 @@ public class QuickPayUTest {
     assertEquals(4.0, transactionResult.getTransactionFee(), delta); assertEquals(95.5, transactionResult.getReceiverWillGet(), delta);
     assertEquals(TransactionStatus.Success, transactionResult.getStatus());
   }
-
-
 
   @Test public void givenInvalidTransaction_processTransaction_thenReturnFail() throws UnsupportedTransactionException {
     when(transaction.getCountry()).thenReturn(Country.southAfrica());

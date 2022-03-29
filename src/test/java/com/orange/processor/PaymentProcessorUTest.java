@@ -41,7 +41,7 @@ public class PaymentProcessorUTest {
     assertEquals(2.0, transactionResult.getTransactionFee(), delta);
     assertEquals(95.5, transactionResult.getReceiverWillGet(), delta);
     assertEquals(TransactionStatus.Success, transactionResult.getStatus());
-    assertEquals(HoutPay.class.getName(), transactionResult.getProviderName());
+    assertEquals(HoutPay.class.getSimpleName(), transactionResult.getProviderName());
 
   }
 
@@ -63,7 +63,7 @@ public class PaymentProcessorUTest {
     assertEquals(25.0, transactionResult.getTransactionFee(), delta);
     assertEquals(955.0, transactionResult.getReceiverWillGet(), delta);
     assertEquals(TransactionStatus.Success, transactionResult.getStatus());
-    assertEquals(SurePay.class.getName(), transactionResult.getProviderName());
+    assertEquals(SurePay.class.getSimpleName(), transactionResult.getProviderName());
 
   }
 }

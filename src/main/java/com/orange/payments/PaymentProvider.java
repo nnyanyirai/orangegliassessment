@@ -1,5 +1,6 @@
 package com.orange.payments;
 
+import com.orange.exceptions.UnsupportedTransactionException;
 import com.orange.transactions.Transaction;
 
 public interface PaymentProvider {
@@ -21,14 +22,15 @@ public interface PaymentProvider {
      * @param transaction
      * @return
      */
-    double calculateTransactionFee(Transaction transaction);
+    double calculateTransactionFee(Transaction transaction) throws UnsupportedTransactionException;
 
     /**
      * Process the transaction and get a transaction result.
      * @param transaction
      * @return
      */
-    TransactionResult processTransaction(Transaction transaction);
+    TransactionResult processTransaction(Transaction transaction)
+        throws UnsupportedTransactionException;
 
 
 }

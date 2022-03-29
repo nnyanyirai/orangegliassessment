@@ -11,6 +11,16 @@ public class Transaction {
     private final Country country;
     private int transactionAmount;
 
+    @Override
+    public String toString() {
+        return "Transaction{" +
+            "customerId=" + customerId +
+            ", cardType=" + cardType +
+            ", country=" + country +
+            ", transactionAmount=" + transactionAmount +
+            '}';
+    }
+
     public Transaction(long customerId, CardType cardType, Country country, int transactionAmount) {
         this.customerId = customerId;
         this.cardType = cardType;
